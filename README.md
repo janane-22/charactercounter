@@ -19,4 +19,4 @@ CSS for styling and responsive layout
 
 JavaScript for dynamic count logic, limit enforcement, and interactive feedback
 
-Click Here -->
+Click Here -->https://janane-22.github.io/charactercounter/
