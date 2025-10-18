@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Text Area</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 500px;
+            margin: 60px auto;
+            border-radius: 10px;
+            padding: 32px 24px 26px 24px;
+            box-shadow: 0 0 15px rgba(120,120,180,0.08);
+        }
+        label {
+            font-size: 20px;
+            font-weight: 700;
+        }
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            margin-top: 14px;
+            margin-bottom: 10px;
+            padding: 12px;
+            font-size: 17px;
+            border: 1px solid #b0b0b0;
+            border-radius: 7px;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+        .counter-info {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 3px;
+        }
+        .counter-current {
+            font-size: 16px;
+            font-weight: 600;
+            color:green ;
+            margin-right: 12px;
+        }
+        .counter-warning {
+            color: #e53e3e;
+            font-size: 15px;
+            display: none;
+            margin-top: 3px;
+            font-weight: 600;
+        }
+        .full {
+            color: #e53e3e !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <label for="message">Your Message <span class="counter-info">(200 characters max)</span></label>
+        <textarea id="message" maxlength="200" placeholder="Type your message here..."></textarea>
+        <div>
+            <span id="charCount" class="counter-current">0/200 characters</span>
+            <span id="warning" class="counter-warning"></span>
+        </div>
+    </div>
+    <script>
+        var textarea = document.getElementById('message');
+        var charCount = document.getElementById('charCount');
+        var warning = document.getElementById('warning');
+        var max = 200;
+
+        textarea.addEventListener('input', function() {
+            var val = textarea.value;
+            var len = val.length;
+
+            if (len > max) {
+                textarea.value = val.substring(0, max);
+                len = max;
+            }
+
+            charCount.textContent = len + '/' + max + ' characters';
+
+            if(len === max) {
+                charCount.classList.add('full');
+                warning.style.display = "inline";
+                warning.textContent = "Character limit reached!";
+            } else {
+                charCount.classList.remove('full');
+                warning.style.display = "none";
+                warning.textContent = "";
+            }
+        });
+    </script>
+</body>
+</html>
